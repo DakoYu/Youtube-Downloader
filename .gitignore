@@ -1,1 +1,5 @@
 virt/
+build/
+dist/
+main.spec
+run.txt

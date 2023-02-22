@@ -1,5 +1,7 @@
 import threading
 import tkinter
+import os
+import sys
 from tkinter import *
 from tkinter import ttk
 from tkinter import filedialog
@@ -47,15 +49,23 @@ def select():
     directory.delete(0, END)
     directory.insert(0, path)
 
+def resource_path(relative_path):
+    try:
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
+
 window = Tk()
 window.title('YouTube Downloader')
-window.iconbitmap('images/youtube.ico')
+window.iconbitmap(resource_path('youtube.ico'))
 window.geometry('800x350')
 window.maxsize(800, 350)
 window.minsize(800, 350)
 
-
-image = PhotoImage(file='./images/youtube.png')
+youtbe_image_path = resource_path('youtube.png')
+image = PhotoImage(file=youtbe_image_path)
 image = image.subsample(10, 10)
 youtube_image = Label(window, image=image)
 youtube_image.grid(row=0, column=0, pady=5)
